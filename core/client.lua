@@ -16,6 +16,24 @@ local interactTick = 0
 local interactCheck = false
 local interactText = nil
 
+
+HelpNotifyType = 'Modern-Draw-Text' -- ['GTA-O' / 'Modern-Draw-Text']
+
+function HelpNotify(txt, t, c)
+    if t == 'GTA-O' then
+        AddTextEntry('HelpNotification', txt)
+        BeginTextCommandDisplayHelp('HelpNotification')
+        EndTextCommandDisplayHelp(0, false, true, -1)
+    elseif t == 'Modern-Draw-Text' then
+        AddTextEntry('FloatingHelpNotification', txt)
+        SetFloatingHelpTextWorldPosition(1, c.x, c.y, c.z + 0.8)
+        SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
+        BeginTextCommandDisplayHelp('FloatingHelpNotification')
+        EndTextCommandDisplayHelp(2, false, true, -1)
+    end
+end
+
+
 function ShowInteractText(text)
     local timer = GetGameTimer()
     interactTick = timer
